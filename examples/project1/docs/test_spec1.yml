@@ -1,0 +1,24 @@
+template: test_spec.j2.md
+output: test_spec1.md
+reference: custom-reference.docx
+
+metadata:
+  title: Test Specification for Project 1 Test 1 
+  author: Sebastian Schaetz
+  generation_date: 2025-05-29
+  doc_id: DOC-0034 rev C
+  project_id: PROJ-0001
+  company_name: Pandoctylus, Inc.
+  protection_note: MIT Licensed
+  form_id: PROJ-001-FRM-002
+  form_name: Spec Form 15 
+
+
+content:
+  purpose: |
+    This test specification defines verification steps for the Project 1 Test 1.
+
+  scope: |
+    Applies to engineering build 1.2 and firmware version 3.1 or higher.
+
+  main_file: docs/test_spec1.md

@@ -42,3 +42,10 @@ build/
 
 # Word
 ~*
+
+# Pandoctylus
+examples/project1/output/*
+
+# Mac
+.DS_Store
+

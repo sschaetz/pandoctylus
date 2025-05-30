@@ -15,6 +15,7 @@ authors = [
 dependencies = [
     "pypandoc-binary",
     "docxtpl",
+    "pyyaml",
 ]
 
 [project.optional-dependencies]
