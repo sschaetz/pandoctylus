@@ -26,3 +26,24 @@ dev = [
     "isort",
     "mypy",
 ]
+
+[tool.hatch.build.targets.wheel]
+packages = ["pandoctylus"]
+only-include = ["pandoctylus"]
+exclude = [
+    "pandoctylus-venv",
+    ".git",
+    ".github",
+    ".pytest_cache",
+    "tests",
+    "examples",
+    "doc",
+    "dist",
+    "build",
+    "*.pyc",
+    "__pycache__",
+    "*.pyo",
+    "*.pyd",
+    ".DS_Store",
+    "~$*.docx"
+]
