@@ -27,10 +27,19 @@ dev = [
     "mypy",
 ]
 
-[tool.hatch.build.targets.wheel]
-packages = ["pandoctylus"]
-only-include = ["pandoctylus"]
+[tool.hatch.build]
+include = [
+    "pandoctylus/**/*.py",
+    "LICENSE.md",
+    "README.md",
+]
 exclude = [
+    "**/__pycache__",
+    "**/*.pyc",
+    "**/*.pyo",
+    "**/*.pyd",
+    ".DS_Store",
+    "~$*.docx",
     "pandoctylus-venv",
     ".git",
     ".github",
@@ -40,10 +49,4 @@ exclude = [
     "doc",
     "dist",
     "build",
-    "*.pyc",
-    "__pycache__",
-    "*.pyo",
-    "*.pyd",
-    ".DS_Store",
-    "~$*.docx"
 ]
