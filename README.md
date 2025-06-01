@@ -44,6 +44,32 @@ uv pip install -e ".[dev]"
 pytest
 ```
 
+## Packaging and Publishing
+
+To build and publish the package to PyPI:
+
+1. Install build tools:
+```bash
+uv pip install build twine
+```
+
+2. Build the package:
+```bash
+python -m build
+```
+
+3. Verify the distributions:
+```bash
+python -m twine check dist/*
+```
+
+4. Upload to PyPI:
+```bash
+python -m twine upload dist/*
+```
+
+The package will be available at https://pypi.org/project/pandoctylus/
+
 ## Features
 
 - Generate multiple documents from shared Markdown and YAML and a docx template.
