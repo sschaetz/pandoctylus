@@ -1,30 +1,3 @@
-# 
-# from docxtpl import DocxTemplate
-# import pypandoc
-#
-# # Interpolate jinja2 style
-# doc = DocxTemplate("custom-reference.docx")
-# context = { 
-#     "doc_id" : "DOC-0034 rec C",
-#     "project_id" : "PROJ-0001",
-#     "doc_name" : "Pandoctylus -- A crazy and opinionated way of generating documents",
-# }
-
-# doc.render(context)
-# doc.save("preprocessed-reference.docx")
-
-# # Now run pandoc.
-# output = pypandoc.convert_file(
-#     "my_doc.md",
-#     "docx",
-#     outputfile="final.docx",
-#     extra_args = [
-#         "--reference-doc=preprocessed-reference.docx",
-#         "--toc",
-#         "--toc-depth=3",
-#     ],
-# )
-
 from docxtpl import DocxTemplate
 import pypandoc
 
@@ -105,7 +78,6 @@ def render_docx_doc(markdown_file: Path, yaml_path: Path, pd_paths: PDPaths) -> 
     # Interpolate the docx 
 
     doc_template = DocxTemplate(reference_doc)
-    print(doc.get("metadata", {}))
     doc_template.render(doc.get("metadata", {}))
     # Save the document to a temporary file
     temp_reference_doc = pd_paths.output_dir / "temp-preprocessed-reference.docx"
@@ -113,12 +85,16 @@ def render_docx_doc(markdown_file: Path, yaml_path: Path, pd_paths: PDPaths) -> 
    
     output_path = (pd_paths.output_dir / output_name).with_suffix(".docx")
 
+    # Set resource path to root directory so pandoc can resolve relative image paths
+    resource_path = str(pd_paths.root_dir)
+
     output = pypandoc.convert_file(
         str(markdown_file),
         "docx",
         outputfile=str(output_path),
         extra_args = [
             f"--reference-doc={str(temp_reference_doc)}",
+            f"--resource-path={resource_path}",
             "--toc",
             "--toc-depth=3",
         ]
