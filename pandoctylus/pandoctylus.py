@@ -105,6 +105,7 @@ def render_docx_doc(markdown_file: Path, yaml_path: Path, pd_paths: PDPaths) -> 
     # Interpolate the docx 
 
     doc_template = DocxTemplate(reference_doc)
+    print(doc.get("metadata", {}))
     doc_template.render(doc.get("metadata", {}))
     # Save the document to a temporary file
     temp_reference_doc = pd_paths.output_dir / "temp-preprocessed-reference.docx"
@@ -126,14 +127,23 @@ def render_docx_doc(markdown_file: Path, yaml_path: Path, pd_paths: PDPaths) -> 
 def main():
     parser = argparse.ArgumentParser(description="Process YAML files in a specified directory.")
     parser.add_argument("--root-dir", type=str, help="Root directory containing YAML files")
+    parser.add_argument("--output-dir", type=str, help="Output directory")
+
     args = parser.parse_args()
+
+    if not args.output_dir:
+        output_dir = Path(args.root_dir) / "output"
+    else:
+        output_dir = Path(args.output_dir)
+
+    output_dir.mkdir(parents=True, exist_ok=True)
 
     pd_paths = PDPaths(
         root_dir=Path(args.root_dir),
         docs_dir=Path(args.root_dir) / "docs",
         common_dir=Path(args.root_dir) / "common",
         templates_dir=Path(args.root_dir) / "templates",
-        output_dir=Path(args.root_dir) / "output"
+        output_dir=output_dir
     )
 
     doc_files = sorted(pd_paths.docs_dir.glob("*.yml"))

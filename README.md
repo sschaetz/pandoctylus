@@ -17,8 +17,13 @@ how to make a document. Key ingredients:
 - define the document as yaml file in `docs/` sub-dir
 - create or pick an existing jinja template and refernece it in the yaml file
 - create or pick an existing docx template and reference it in the yaml file
-- run the tool: `python pandoctylus/pandoctylus.py --root-dir examples/project1`
-- enjoy the generated docs in `examples/project1/output` 
+- run the tool: 
+  ```bash
+  python pandoctylus/pandoctylus.py \
+    --root-dir examples/project1 \
+    --output-dir ./output
+  ```
+- enjoy the generated docs in `./output`
 
 ## Development
 
